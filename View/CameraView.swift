@@ -13,6 +13,8 @@ struct CameraView: View {
     @Binding var imageData: Data?
     @Binding var showCamera: Bool
     
+    @State var cameraViewModel: CameraViewModel = CameraViewModel()
+    
     let controlButtonWidth: CGFloat = 120
     let controlBarFrameHeight: CGFloat = 90
     
@@ -41,8 +43,15 @@ struct CameraView: View {
     }
     
     private var cameraPreview: some View {
-        Color.yellow
-            .ignoresSafeArea()
+        GeometryReader { geo in
+            CameraPreview(cameraViewModel: $cameraViewModel, frame: geo.frame(in: .global))
+                .onAppear() {
+                    cameraViewModel.requestAccess()
+                }
+        }
+        .ignoresSafeArea()
+//        Color.yellow
+//            .ignoresSafeArea()
     }
     
 }

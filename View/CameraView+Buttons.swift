@@ -10,12 +10,15 @@ extension CameraView {
     var retakeButton: some View {
         ControlButtonView(label: "Retake") {
             // Retake the photo
+            cameraViewModel.retakePhoto()
         }
     }
     
     var usePhotoButton: some View {
         ControlButtonView(label: "Use Photo") {
             // Use the photo that was taken
+            imageData = cameraViewModel.photoData
+            showCamera = false
         }
     }
     
@@ -28,6 +31,7 @@ extension CameraView {
     var photoCaptureButton: some View {
         Button {
             // Take Photo
+            cameraViewModel.takePhoto()
         } label: {
             ZStack {
                 Circle()

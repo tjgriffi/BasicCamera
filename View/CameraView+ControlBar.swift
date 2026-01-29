@@ -8,9 +8,13 @@ import SwiftUI
 
 extension CameraView {
     
+    @ViewBuilder
     var horizontalControlBar: some View {
-        horizontalControlBarPrePhoto
-//        horizontalControlBarPostPhoto
+        if cameraViewModel.hasPhoto {
+            horizontalControlBarPostPhoto
+        } else {
+            horizontalControlBarPrePhoto
+        }
     }
     
     var horizontalControlBarPrePhoto: some View {
@@ -35,9 +39,13 @@ extension CameraView {
         }
     }
     
+    @ViewBuilder
     var verticalControlBar: some View {
-        verticalControlBarPrePhoto
-//        verticalControlBarPostPhoto
+        if cameraViewModel.hasPhoto {
+            verticalControlBarPostPhoto
+        } else {
+            verticalControlBarPrePhoto
+        }
     }
     
     var verticalControlBarPrePhoto: some View {
